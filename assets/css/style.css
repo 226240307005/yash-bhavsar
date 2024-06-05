@@ -787,6 +787,9 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
     padding: 38px 0;
 }
 .hm-footer-copyright p a {color: #888ea5;}
+.footer-copyright{
+          background-color: #222222;
+  }
 /*===============================
     Scroll Top
 ===============================*/
