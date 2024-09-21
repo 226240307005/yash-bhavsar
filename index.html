@@ -2,6 +2,70 @@
 <html class="no-js" lang="en">
 
     <head>
+    	<style>
+  .visit-count-box {
+    width: 100px;
+    height: 100px;
+    background-color: #f1f1f1;
+    border: 2px solid #3498db;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 18px;
+    font-weight: bold;
+    color: #3498db;
+    margin: 20px auto;
+    transition: transform 0.6s ease-in-out, box-shadow 0.6s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.visit-count-box:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.8);
+}
+
+.rotate {
+    animation: rotate-box 0.6s ease-in-out;
+}
+
+@keyframes rotate-box {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.bounce {
+    animation: bounce-box 1s ease infinite;
+}
+
+@keyframes bounce-box {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.visitor-text {
+    font-size: 12px;
+    color: #3498db;
+    position: absolute;
+    bottom: -15px;
+    font-weight: normal;
+}
+
+
+
+
+
+    	</style>
         <!-- meta data -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -106,7 +170,7 @@
 					<div class="col-md-12 text-center">
 						<div class="header-text">
 							<h2>hi <span>, </span> i am <br> Yash <br> Bhavsar<span>.</span>   </h2>
-							<p>Student of Computer Engineering</p>
+							<p>Stusent of Computer Engineering</p>
 							
 						</div><!--/.header-text-->
 					</div><!--/.col-->
@@ -131,7 +195,7 @@
 								</h3>
 								<p>
 
-                  I developed this website to introduce myself and showcase my website. I am currently pursuing a diploma in computer engineering, but I aim to continue my higher studies, including a Bachelor of Engineering (BE) and a Master of Engineering (ME). After graduating, I aspire to become a lecturer at a government engineering college.
+                  I developed this website to introduce myself and showcase my website. I am currently pursuing a diploma in computer engineering, but I aim to continue my higher studies, including a Bachelor of Engineering (BE) and maybe Master of Engineering (ME). After graduating, I aspire to become a lecturer at a government engineering college.
 								</p>
 								<div class="row">
 									<div class="col-sm-6">
@@ -149,7 +213,7 @@
 									<div class="col-sm-6">
 										<div class="single-about-add-info">
 											<h3>website</h3>
-											<p>https://226240307005.github.io/yash-bhavsar/</p>
+											<p>https://226240307005.github.io/Yash-Bhavsar-introduction/</p>
 										</div>
 									</div>
 								</div>
@@ -647,7 +711,7 @@ I am pursuing my 10th standard at Navibai Ramji Ashram (NRA Vidhyalaya). I quali
 										</div>
 										<div class="single-contact-add-info">
 											<h3>website</h3>
-											<p>https://226240307005.github.io/yash-bhavsar/</p>
+											<p>https://226240307005.github.io/Yash-Bhavsar-introduction/</p>
 										</div>
 									</div>
 								</div><!--/.contact-adress-->
@@ -674,7 +738,19 @@ I am pursuing my 10th standard at Navibai Ramji Ashram (NRA Vidhyalaya). I quali
 				<div class="hm-footer-copyright text-center">
 					<p>
 						&copy; copyright Yash Bhavsar. design and developed by <a href="">Yash Bhavsar</a>
+
 					</p><!--/p-->
+<div id="visitCountBox" class="visit-count-box">
+    <span id="visitCount"></span>
+    <p class="visitor-text"></p>
+</div>
+<p id="lastVisit"></p>
+
+
+
+
+
+
 				</div><!--/.text-center-->
 			</div><!--/.container-->
 
@@ -723,7 +799,46 @@ I am pursuing my 10th standard at Navibai Ramji Ashram (NRA Vidhyalaya). I quali
         
         <!--Custom JS-->
         <script src="assets/js/custom.js"></script>
-        
+     <script>
+    // Get visit count from localStorage
+let visitCount = localStorage.getItem('page_view_count');
+let lastVisit = localStorage.getItem('last_visit_time');
+const visitDisplay = document.getElementById('visitCount');
+const visitCountBox = document.getElementById('visitCountBox');
+const lastVisitDisplay = document.getElementById('lastVisit');
+
+// If it's the first visit, initialize the count and last visit
+if (visitCount === null) {
+    visitCount = 0;
+}
+visitCount++;
+
+// Update the visit count in localStorage
+localStorage.setItem('page_view_count', visitCount);
+
+// Get current date and time for the last visit
+let currentDate = new Date().toLocaleString();
+localStorage.setItem('last_visit_time', currentDate);
+
+// Display the visit count and last visit time
+visitDisplay.textContent = visitCount;
+lastVisitDisplay.textContent = lastVisit ? "Your last visit was on " + lastVisit : "This is your first visit.";
+
+// Rotate the box when the visit count updates
+visitCountBox.classList.add('rotate');
+
+// Remove the rotate class after the animation
+setTimeout(() => {
+    visitCountBox.classList.remove('rotate');
+}, 600);
+
+// Add a bounce effect to the box after it rotates
+setTimeout(() => {
+    visitCountBox.classList.add('bounce');
+}, 800);
+
+</script>
+
     </body>
 	
 </html>
